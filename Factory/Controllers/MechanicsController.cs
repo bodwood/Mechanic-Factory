@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Factory.Models;
 using System.Linq;
 
-namespace MechanicsController.Controllers
+namespace Factory.Controllers
 {
   public class MechanicsController : Controller
   {
@@ -17,6 +17,12 @@ namespace MechanicsController.Controllers
     }
 
   public ActionResult Index()
+    {
+      List<Mechanic> model = _db.Mechanics.ToList();
+      return View(model);
+    }
+
+  public ActionResult Create()
     {
       return View();
     }
