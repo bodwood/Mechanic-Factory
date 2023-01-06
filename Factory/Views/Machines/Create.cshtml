@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Create Machine</h1>
+@model Factory.Models.Machine
+
+<h1>Enter Machine Info Below</h1>
+@using (@Html.BeginForm())
+{
+  @Html.DisplayFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name, new {placeholder= "Machine Name"})
+  <input type="Submit" value="Add">
+}
+
+<p class="enlarge">@Html.ActionLink("Back to Machines", "Index", "Machines")</p>
+<p class="enlarge">@Html.ActionLink("Main Menu", "Index", "Home")</p>
