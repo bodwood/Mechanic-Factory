@@ -7,13 +7,18 @@ using System.Linq;
 
 namespace MechanicsController.Controllers
 {
-  public class MechanicsController
+  public class MechanicsController : Controller
   {
     private readonly FactoryContext _db;
 
     public MechanicsController(FactoryContext db)
     {
       _db = db;
+    }
+
+  public ActionResult Index()
+    {
+      return View();
     }
   }
 }
