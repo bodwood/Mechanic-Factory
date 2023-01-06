@@ -16,18 +16,18 @@ namespace Factory.Controllers
       _db = db;
     }
 
-  public ActionResult Index()
+    public ActionResult Index()
     {
       List<Mechanic> model = _db.Mechanics.ToList();
       return View(model);
     }
 
-  public ActionResult Create()
+    public ActionResult Create()
     {
       return View();
     }
 
-   [HttpPost]
+    [HttpPost]
     public ActionResult Create(Mechanic mechanic)
     {
       _db.Mechanics.Add(mechanic);
@@ -43,10 +43,33 @@ namespace Factory.Controllers
       return View(thisMechanic);
     }
 
-     public ActionResult Edit(int id)
+    public ActionResult Edit(int id)
     {
       Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
       return View(thisMechanic);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Mechanic mechanic)
+    {
+      _db.Mechanics.Update(mechanic);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+      return View(thisMechanic);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+      _db.Mechanics.Remove(thisMechanic);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
