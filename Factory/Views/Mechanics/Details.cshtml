@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Mechanic Details</h1>
+
+@model Factory.Models.Mechanic
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<p class="enlarge">@Html.ActionLink("Edit", "Edit", new { id = @Model.MechanicId})</p>
+<p class="enlarge">@Html.ActionLink("Delete Mechanic", "Delete", new { id = Model.MechanicId})</p>
+<p class="enlarge">@Html.ActionLink("Back to Mechanics", "Index")</p>
+<p class="enlarge">@Html.ActionLink("Main Menu", "Index", "Home")</p>
