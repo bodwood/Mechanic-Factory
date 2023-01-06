@@ -5,8 +5,24 @@
 <h1>Mechanic Details</h1>
 
 @model Factory.Models.Mechanic
+@using Factory.Models
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
+
+@if (@Model.Machines.Count == 0)
+{
+  <p>This mechanic has no machines yet..</p>
+} 
+else
+{
+  <h3>Machines:</h3>
+  <ul>
+    @foreach (Machine machine in Model.Machines)
+    {
+      <li>@Html.ActionLink($"{machine.Name}", "Details", "Machines", new { id = machine.MachineId })</li>
+    }
+  </ul>
+}
 
 <p class="enlarge">@Html.ActionLink("Edit", "Edit", new { id = @Model.MechanicId})</p>
 <p class="enlarge">@Html.ActionLink("Delete Mechanic", "Delete", new { id = Model.MechanicId})</p>
