@@ -42,5 +42,11 @@ namespace Factory.Controllers
                                   .FirstOrDefault(mechanic => mechanic.MechanicId == id);
       return View(thisMechanic);
     }
+
+     public ActionResult Edit(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+      return View(thisMechanic);
+    }
   }
 }
