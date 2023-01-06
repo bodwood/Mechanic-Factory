@@ -45,6 +45,7 @@ li{
   color: black;
   padding-right: 4%;
   padding-top: 2%;
+  list-style: none;
 }
 p{
   font-family: 'Major Mono Display', monospace;
