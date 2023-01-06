@@ -34,5 +34,13 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Details(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics
+                                  .Include(mechanic => mechanic.Machines)
+                                  .FirstOrDefault(mechanic => mechanic.MechanicId == id);
+      return View(thisMechanic);
+    }
   }
 }
