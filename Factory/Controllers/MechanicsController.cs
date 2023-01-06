@@ -26,5 +26,13 @@ namespace Factory.Controllers
     {
       return View();
     }
+
+   [HttpPost]
+    public ActionResult Create(Mechanic mechanic)
+    {
+      _db.Mechanics.Add(mechanic);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
