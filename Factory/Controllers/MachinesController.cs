@@ -18,7 +18,8 @@ namespace MachinesController.Controllers
 
     public ActionResult Index()
     {
-      return View();
+      List<Machine> model = _db.Machines.ToList();
+      return View(model);
     }
 
     public ActionResult Create()
