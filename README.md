@@ -59,4 +59,4 @@ This website gives employer the ability to see a view of all company mechanics a
 
 _[MIT](https://en.wikipedia.org/wiki/MIT_License)_
 
-Copyright (c) _2022_ Bodie Wood_
+Copyright (c) _2022_ Bodie Wood
