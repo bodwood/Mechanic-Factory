@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Factory.Models;
 using System.Linq;
 
-namespace MachinesController.Controllers
+namespace Factory.Controllers
 {
   public class MachinesController : Controller
   {
@@ -18,12 +18,15 @@ namespace MachinesController.Controllers
 
     public ActionResult Index()
     {
-      List<Machine> model = _db.Machines.ToList();
+      List<Machine> model = _db.Machines
+                                .Include(machine => machine.Mechanic)
+                                .ToList();
       return View(model);
     }
 
     public ActionResult Create()
     {
+      ViewBag.MechanicId = new SelectList(_db.Mechanics, "MechanicId", "Name");
       return View();
     }
 
