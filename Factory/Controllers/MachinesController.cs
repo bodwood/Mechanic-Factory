@@ -22,6 +22,16 @@ namespace Factory.Controllers
       return View(_db.Machines.ToList()); //replaces model
     }
 
+    public ActionResult Details(int id)
+    {
+      ViewBag.Mechanics = _db.Mechanics.ToList();
+      Machine thisMachine = _db.Machines
+                                .Include(machine => machine.JoinEntities) //grabs join list
+                                .ThenInclude(join => join.Mechanic)  //grabs the related mechanic
+                                .FirstOrDefault(machine => machine.MachineId == id);  //grabs the machine related to the passed in parameter
+      return View(thisMachine);
+    }
+
     public ActionResult Create()
     {
       return View();
@@ -40,15 +50,6 @@ namespace Factory.Controllers
         _db.SaveChanges();
         return RedirectToAction("Index");
       }
-    }
-
-    public ActionResult Details(int id)
-    {
-      Machine thisMachine = _db.Machines
-                                .Include(machine => machine.JoinEntities) //grabs join list
-                                .ThenInclude(join => join.Mechanic)  //grabs the related mechanic
-                                .FirstOrDefault(machine => machine.MachineId == id);  //grabs the machine related to the passed in parameter
-      return View(thisMachine);
     }
 
     public ActionResult AddMechanic(int id)
@@ -72,36 +73,48 @@ namespace Factory.Controllers
       return RedirectToAction("Details", new { id = machine.MachineId });
     }
 
-    
+     public ActionResult Edit(int id)
+      {
+        Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+        return View(thisMachine);
+      }
 
-    //  public ActionResult Edit(int id)
-    //   {
-    //     Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-    //     ViewBag.MechanicId = new SelectList(_db.Mechanics, "MechanicId", "Name");
-    //     return View(thisMachine);
-    //   }
+      [HttpPost]
+      public ActionResult Edit(Machine machine)
+      {
+        if(!ModelState.IsValid){
+          return View(machine);
+         }
+        else
+        {
+        _db.Machines.Update(machine);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+        }
+      }
 
-    //   [HttpPost]
-    //   public ActionResult Edit(Machine machine)
-    //   {
-    //     _db.Machines.Update(machine);
-    //     _db.SaveChanges();
-    //     return RedirectToAction("Index");
-    //   }
+      public ActionResult Delete(int id)
+      {
+        Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+        return View(thisMachine);
+      }
 
-    //   public ActionResult Delete(int id)
-    //   {
-    //     Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-    //     return View(thisMachine);
-    //   }
+      [HttpPost, ActionName("Delete")]
+      public ActionResult DeleteConfirmed(int id)
+      {
+        Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+        _db.Machines.Remove(thisMachine);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
 
-    //    [HttpPost, ActionName("Delete")]
-    //   public ActionResult DeleteConfirmed(int id)
-    //   {
-    //     Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-    //     _db.Machines.Remove(thisMachine);
-    //     _db.SaveChanges();
-    //     return RedirectToAction("Index");
-    //   }
+    [HttpPost]
+    public ActionResult DeleteMechanic(int joinId)
+    {
+      MechanicMachine joinEntry = _db.MechanicMachines.FirstOrDefault(entry => entry.MechanicMachineId == joinId);
+      _db.MechanicMachines.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
