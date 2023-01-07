@@ -1,0 +1,19 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Machine
+
+<h1>Add mechanic to: @Html.DisplayFor(model => model.Name)</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.MachineId)
+
+    @Html.Label("Select Mechanic")
+    @Html.DropDownList("MechanicId")
+
+    <input type="submit" value="Save" />
+}
+
+<p>@Html.ActionLink("Back to Machines", "Index")</p>
