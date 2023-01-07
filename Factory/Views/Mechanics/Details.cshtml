@@ -12,6 +12,7 @@
 @if (@Model.Machines.Count == 0)
 {
   <p>This mechanic has no machines yet..</p>
+  <p class="enlarge">@Html.ActionLink("Add Machine", "Create", "Machines")</p>
 } 
 else
 {
