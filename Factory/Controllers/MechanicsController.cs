@@ -31,7 +31,7 @@ namespace Factory.Controllers
     {
       if (!ModelState.IsValid)
       {
-          return View(mechanic);
+        return View(mechanic);
       }
       _db.Mechanics.Add(mechanic);
       _db.SaveChanges();
@@ -58,15 +58,15 @@ namespace Factory.Controllers
     public ActionResult Edit(Mechanic mechanic)
     {
       if (!ModelState.IsValid)
-    {
-      return View(mechanic);
-    }
-    else
-    {
-      _db.Mechanics.Update(mechanic);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+      {
+        return View(mechanic);
+      }
+      else
+      {
+        _db.Mechanics.Update(mechanic);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
 
     public ActionResult Delete(int id)
@@ -84,7 +84,7 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-       public ActionResult AddMachine(int id)
+    public ActionResult AddMachine(int id)
     {
       Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanics => mechanics.MechanicId == id);
       ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
@@ -92,17 +92,26 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-  public ActionResult AddMachine(Mechanic mechanic, int machineId)
-  {
-    #nullable enable
-    MechanicMachine? joinEntity =_db.MechanicMachines.FirstOrDefault(join => (join.MachineId == machineId && join.MechanicId == mechanic.MechanicId));
-    #nullable disable
-    if (joinEntity == null && machineId != 0)
+    public ActionResult AddMachine(Mechanic mechanic, int machineId)
     {
-      _db.MechanicMachines.Add(new MechanicMachine() { MachineId = machineId, MechanicId = mechanic.MechanicId });
-      _db.SaveChanges();
+#nullable enable
+      MechanicMachine? joinEntity = _db.MechanicMachines.FirstOrDefault(join => (join.MachineId == machineId && join.MechanicId == mechanic.MechanicId));
+#nullable disable
+      if (joinEntity == null && machineId != 0)
+      {
+        _db.MechanicMachines.Add(new MechanicMachine() { MachineId = machineId, MechanicId = mechanic.MechanicId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = mechanic.MechanicId });
     }
-    return RedirectToAction("Details", new { id = mechanic.MechanicId});
-  }  
+
+    [HttpPost]
+    public ActionResult DeleteMachine(int joinId)
+    {
+      MechanicMachine joinEntry = _db.MechanicMachines.FirstOrDefault(entry => entry.MechanicMachineId == joinId);
+      _db.MechanicMachines.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
