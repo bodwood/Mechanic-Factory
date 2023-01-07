@@ -19,16 +19,16 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      return View(_db.Machines.ToList()); //replaces model
+      return View(_db.Machines.ToList());
     }
 
     public ActionResult Details(int id)
     {
       ViewBag.Mechanics = _db.Mechanics.ToList();
       Machine thisMachine = _db.Machines
-                                .Include(machine => machine.JoinEntities) //grabs join list
-                                .ThenInclude(join => join.Mechanic)  //grabs the related mechanic
-                                .FirstOrDefault(machine => machine.MachineId == id);  //grabs the machine related to the passed in parameter
+                                .Include(machine => machine.JoinEntities)
+                                .ThenInclude(join => join.Mechanic)
+                                .FirstOrDefault(machine => machine.MachineId == id); 
       return View(thisMachine);
     }
 

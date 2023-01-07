@@ -42,9 +42,9 @@ namespace Factory.Controllers
     {
       ViewBag.Machines = _db.Machines.ToList();
       Mechanic thisMechanic = _db.Mechanics
-                                  .Include(mechanic => mechanic.JoinEntities) //grabs join list
-                                .ThenInclude(join => join.Machine)  //grabs the related mechanic
-                                .FirstOrDefault(mechanic => mechanic.MechanicId == id);  //grabs the machine related to the passed in parameter
+                                  .Include(mechanic => mechanic.JoinEntities)
+                                .ThenInclude(join => join.Machine)
+                                .FirstOrDefault(mechanic => mechanic.MechanicId == id);
       return View(thisMechanic);
     }
 
