@@ -5,8 +5,24 @@
 <h1>Machine Details</h1>
 
 @model Factory.Models.Machine
+@using Factory.Models
 
-<h2>@Html.DisplayFor(model => model.Name) <br><br> Mechanic: @Html.DisplayFor(model => model.Mechanic.Name)</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+@if (@Model.JoinEntities.Count == 0)
+{
+  <h3>This machine has no mechanics</h3>
+}
+else
+{
+  <h4>Current mechanics assigned:</h4>
+  <ul>
+    @foreach(MechanicMachine join in Model.JoinEntities)
+    {
+      <li>@join.Mechanic.Name</li>
+    }
+  </ul>
+}
 
 
 <p class="enlarge">@Html.ActionLink("Edit", "Edit", new { id = Model.MachineId})</p>
