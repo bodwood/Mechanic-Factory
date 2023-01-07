@@ -48,33 +48,61 @@ namespace Factory.Controllers
       return View(thisMechanic);
     }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
-    //   return View(thisMechanic);
-    // }
+    public ActionResult Edit(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+      return View(thisMechanic);
+    }
 
-    // [HttpPost]
-    // public ActionResult Edit(Mechanic mechanic)
-    // {
-    //   _db.Mechanics.Update(mechanic);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Edit(Mechanic mechanic)
+    {
+      if (!ModelState.IsValid)
+    {
+      return View(mechanic);
+    }
+    else
+    {
+      _db.Mechanics.Update(mechanic);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+    }
 
-    // public ActionResult Delete(int id)
-    // {
-    //   Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
-    //   return View(thisMechanic);
-    // }
+    public ActionResult Delete(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+      return View(thisMechanic);
+    }
 
-    // [HttpPost, ActionName("Delete")]
-    // public ActionResult DeleteConfirmed(int id)
-    // {
-    //   Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
-    //   _db.Mechanics.Remove(thisMechanic);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+      _db.Mechanics.Remove(thisMechanic);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+       public ActionResult AddMachine(int id)
+    {
+      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanics => mechanics.MechanicId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      return View(thisMechanic);
+    }
+
+    [HttpPost]
+  public ActionResult AddMachine(Mechanic mechanic, int machineId)
+  {
+    #nullable enable
+    MechanicMachine? joinEntity =_db.MechanicMachines.FirstOrDefault(join => (join.MachineId == machineId && join.MechanicId == mechanic.MechanicId));
+    #nullable disable
+    if (joinEntity == null && machineId != 0)
+    {
+      _db.MechanicMachines.Add(new MechanicMachine() { MachineId = machineId, MechanicId = mechanic.MechanicId });
+      _db.SaveChanges();
+    }
+    return RedirectToAction("Details", new { id = mechanic.MechanicId});
+  }  
   }
 }
