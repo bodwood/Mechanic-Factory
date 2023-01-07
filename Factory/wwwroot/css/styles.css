@@ -35,6 +35,15 @@ h2{
   box-shadow: 3px 15px 8px -10px rgba(0, 0, 0, 0.3);
 }
 
+h3{
+  margin-top: 5%;
+  margin-bottom: 7%;
+  font-family: 'Major Mono Display', monospace;
+  font-size: 2.625rem;
+  font-weight: 600;
+  color: black;
+}
+
 ul{
   list-style: none;
 }
