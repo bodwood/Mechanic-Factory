@@ -2,14 +2,17 @@
   Layout = "_Layout";
 }
 
-<h1>Create Machine</h1>
 @model Factory.Models.Machine
 
 <h1>Enter Machine Info Below</h1>
+<h3>Machines can only be added if there is an associated Mechanic</h3>
 @using (@Html.BeginForm())
 {
   @Html.DisplayFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name, new {placeholder= "Machine Name"})
+
+  @Html.LabelFor(model => model.Mechanic)
+  @Html.DropDownList("MechanicId")
   <input type="Submit" value="Add">
 }
 
