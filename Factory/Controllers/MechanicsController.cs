@@ -18,8 +18,7 @@ namespace Factory.Controllers
 
     public ActionResult Index()
     {
-      List<Mechanic> model = _db.Mechanics.ToList();
-      return View(model);
+      return View(_db.Mechanics.ToList());
     }
 
     public ActionResult Create()
@@ -27,49 +26,49 @@ namespace Factory.Controllers
       return View();
     }
 
-    [HttpPost]
-    public ActionResult Create(Mechanic mechanic)
-    {
-      _db.Mechanics.Add(mechanic);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+    // [HttpPost]
+    // public ActionResult Create(Mechanic mechanic)
+    // {
+    //   _db.Mechanics.Add(mechanic);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
 
-    public ActionResult Details(int id)
-    {
-      Mechanic thisMechanic = _db.Mechanics
-                                  .Include(mechanic => mechanic.Machines)
-                                  .FirstOrDefault(mechanic => mechanic.MechanicId == id);
-      return View(thisMechanic);
-    }
+    // public ActionResult Details(int id)
+    // {
+    //   Mechanic thisMechanic = _db.Mechanics
+    //                               .Include(mechanic => mechanic.Machines)
+    //                               .FirstOrDefault(mechanic => mechanic.MechanicId == id);
+    //   return View(thisMechanic);
+    // }
 
-    public ActionResult Edit(int id)
-    {
-      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
-      return View(thisMechanic);
-    }
+    // public ActionResult Edit(int id)
+    // {
+    //   Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+    //   return View(thisMechanic);
+    // }
 
-    [HttpPost]
-    public ActionResult Edit(Mechanic mechanic)
-    {
-      _db.Mechanics.Update(mechanic);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+    // [HttpPost]
+    // public ActionResult Edit(Mechanic mechanic)
+    // {
+    //   _db.Mechanics.Update(mechanic);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
 
-    public ActionResult Delete(int id)
-    {
-      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
-      return View(thisMechanic);
-    }
+    // public ActionResult Delete(int id)
+    // {
+    //   Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+    //   return View(thisMechanic);
+    // }
 
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
-    {
-      Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
-      _db.Mechanics.Remove(thisMechanic);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
-    }
+    // [HttpPost, ActionName("Delete")]
+    // public ActionResult DeleteConfirmed(int id)
+    // {
+    //   Mechanic thisMechanic = _db.Mechanics.FirstOrDefault(mechanic => mechanic.MechanicId == id);
+    //   _db.Mechanics.Remove(thisMechanic);
+    //   _db.SaveChanges();
+    //   return RedirectToAction("Index");
+    // }
   }
 }
