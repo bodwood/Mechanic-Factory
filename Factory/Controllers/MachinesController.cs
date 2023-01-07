@@ -1,8 +1,9 @@
+
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using Factory.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Factory.Controllers
@@ -50,10 +51,10 @@ namespace Factory.Controllers
       return View(thisMachine);
     }
 
-    public ActionResult Edit(int id)
+   public ActionResult Edit(int id)
     {
       Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-      ViewBag.CategoryId = new SelectList(_db.Mechanics, "MechanicId", "Name");
+      ViewBag.MechanicId = new SelectList(_db.Mechanics, "MechanicId", "Name");
       return View(thisMachine);
     }
 
