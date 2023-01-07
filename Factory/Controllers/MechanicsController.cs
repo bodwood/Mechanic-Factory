@@ -38,13 +38,15 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
-    // public ActionResult Details(int id)
-    // {
-    //   Mechanic thisMechanic = _db.Mechanics
-    //                               .Include(mechanic => mechanic.Machines)
-    //                               .FirstOrDefault(mechanic => mechanic.MechanicId == id);
-    //   return View(thisMechanic);
-    // }
+    public ActionResult Details(int id)
+    {
+      ViewBag.Machines = _db.Machines.ToList();
+      Mechanic thisMechanic = _db.Mechanics
+                                  .Include(mechanic => mechanic.JoinEntities) //grabs join list
+                                .ThenInclude(join => join.Machine)  //grabs the related mechanic
+                                .FirstOrDefault(mechanic => mechanic.MechanicId == id);  //grabs the machine related to the passed in parameter
+      return View(thisMechanic);
+    }
 
     // public ActionResult Edit(int id)
     // {
