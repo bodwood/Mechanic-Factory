@@ -2,7 +2,30 @@
   Layout = "_Layout";
 }
 
-<h1>Main Menu</h1>
+@using Factory.Models;
 
-<p class="enlarge">@Html.ActionLink("Machines", "Index", "Machines")</p>
-<p class="enlarge">@Html.ActionLink("Mechanics", "Index", "Mechanics")</p>
+<h1>Mechanics</h1>
+@if (Model["mechanics"].Length == 0)
+{
+  <p>No engineers yet..</p>
+}
+<ul>
+  @foreach (Mechanic mechanic in Model["mechanics"])
+  {
+    <li class="enlarge">@Html.ActionLink(@mechanic.Name, "Details", "Mechanics", new { id = @mechanic.MechanicId})</li>
+  }
+</ul>
+
+<h1>Machines</h1>
+@if (Model["machines"].Length == 0)
+{
+  <p>No machines yet...</p>
+} 
+<ul>
+  @foreach (Machine machine in Model["machines"])
+  {
+    <li class="enlarge">@Html.ActionLink(@machine.Name, "Details", "Machines", new { id = @machine.MachineId})</li>
+  }
+</ul>
+
+<hr>
