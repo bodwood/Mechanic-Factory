@@ -9,6 +9,7 @@
 {
   @Html.HiddenFor(model => model.MachineId)
   <li>Name: @Html.EditorFor(model => model.Name, new {placeholder = @Html.DisplayFor(model => model.Name)})</li>
+  <li>@Html.LabelFor(model => model.Mechanic): @Html.DropDownList("MechanicId")</li>
   
   <input type="submit" value="Edit">
 }
