@@ -7,7 +7,8 @@
 <h1>Mechanics</h1>
 @if (Model["mechanics"].Length == 0)
 {
-  <p>No engineers yet..</p>
+  <p>No mechanics yet..</p>
+  <p class="enlarge">@Html.ActionLink("Add Mechanic", "Create", "Mechanics")</p>
 }
 <ul>
   @foreach (Mechanic mechanic in Model["mechanics"])
@@ -20,6 +21,7 @@
 @if (Model["machines"].Length == 0)
 {
   <p>No machines yet...</p>
+  <p class="enlarge">@Html.ActionLink("Add Machine", "Create", "Machines")</p>
 } 
 <ul>
   @foreach (Machine machine in Model["machines"])
