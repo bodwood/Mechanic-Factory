@@ -6,15 +6,13 @@
 @model Factory.Models.Mechanic
 
 <ul>
-  <li>Id: @Html.DisplayFor(model => model.MechanicId)</li>
   <li>Name: @Html.DisplayFor(model => model.Name)</li>
 </ul>
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.MechanicId)
   <input type="submit" value="Delete">
 }
 
-<p>@Html.ActionLink("Back to Mechanics", "Index")</p>
-<p>@Html.ActionLink("Main Menu", "Index", "Home")</p
+<p class="enlarge">@Html.ActionLink("Back to Mechanics", "Index")</p>
+<p class="enlarge">@Html.ActionLink("Main Menu", "Index", "Home")</p
