@@ -26,13 +26,17 @@ namespace Factory.Controllers
       return View();
     }
 
-    // [HttpPost]
-    // public ActionResult Create(Mechanic mechanic)
-    // {
-    //   _db.Mechanics.Add(mechanic);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Create(Mechanic mechanic)
+    {
+      if (!ModelState.IsValid)
+      {
+          return View(mechanic);
+      }
+      _db.Mechanics.Add(mechanic);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
     // public ActionResult Details(int id)
     // {
