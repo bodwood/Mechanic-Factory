@@ -9,12 +9,14 @@
 {
   <h3>No mechanics yet..</h3>
 } 
-
+else 
+{
 <ul>
   @foreach(Mechanic mechanic in Model)
   {
-    <li>@Html.ActionLink($"{mechanic.Name}", "Details", new { id = mechanic.MechanicId })</li>
+    <li class="enlarge">@Html.ActionLink($"{mechanic.Name}", "Details", new { id = mechanic.MechanicId })</li>
   }
 </ul>
+}
 <p class="enlarge">@Html.ActionLink("Add Mechanic", "Create")</p>
 <p class="enlarge">@Html.ActionLink("Main Menu", "Index", "Home")</p>
