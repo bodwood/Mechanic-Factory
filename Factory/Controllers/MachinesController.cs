@@ -60,7 +60,7 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult AddMachine(int mechanicId, Machine machine)
+    public ActionResult AddMechanic(int mechanicId, Machine machine)
     {
       #nullable enable
       MechanicMachine? joinEntity = _db.MechanicMachines.FirstOrDefault(join => (join.MechanicId == mechanicId && join.MachineId == machine.MachineId));
