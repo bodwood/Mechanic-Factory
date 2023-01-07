@@ -27,13 +27,6 @@ This website gives employer the ability to see a view of all company mechanics a
   3. _Run:  ```dotnet restore```_
   **If you run into errors try running ```dotnet add package Microsoft.EntityFrameworkCore.Design -v 6.0.0```**
 
-* _Import database dump with MySql WorkBench
-  1. _Open MySql WorkBench_
-  2. _Select **Server** at top of window_
-  3. _Select_ **Data Import**
-  4. _Select_ **mechanic_factory_db.sql** _file in drowndown_
-  5. Click **Start Import**
-
 * _Create a new file called ```appsettings.json``` within the Factory directory_
   *  In VS Code terminal: 
       - Run:  ```cd Factory```
@@ -42,13 +35,11 @@ This website gives employer the ability to see a view of all company mechanics a
 ```json
     {
       "ConnectionStrings": {
-          "DefaultConnection": "Server=localhost;Port=3306;database=mechanic_factory_db;uid=[YOUR-USER-HERE];pwd=[YOUR-PASSWORD-HERE];"
+          "DefaultConnection": "Server=localhost;Port=3306;database=[YOUR-DATABASE-HERE];uid=[YOUR-USER-HERE];pwd=[YOUR-PASSWORD-HERE];"
       }
   }
 ```
 * _Make sure to set uid and pwd_
-* _Open MySQL and select **Administration** select **Data Import**_
-* _Check **Import from self contained file** option and enter file path of the Factory Database, then start import_
 * _Run: ```dotnet run``` in VS Code termainl to start the program_
 
 ## Known Bugs
