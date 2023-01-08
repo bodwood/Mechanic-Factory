@@ -9,28 +9,38 @@
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
 
-@if (@Model.JoinEntities.Count == 0)
+@if (@Model.JoinEntities.Count == 0 && @ViewBag.Machines.Count == 0)
 {
-  <p>This mechanic has no machines yet..</p>
-  <p class="enlarge">@Html.ActionLink("Add Machine", "Create", "Machines")</p>
+  <p class="text-danger" style="font-weight: bold;">*No machines are available*</p>
+  <p class="text-danger">Mechanic cannot be assiged a machine until one is added to company list</p>
+  <p class="enlarge" style="margin-bottom: 4%;">@Html.ActionLink("Add Machine to Company", "Create", "Machines")</p>
+}
+else if (@Model.JoinEntities.Count == 0)
+{
+  <p class="text-danger">This mechanic has no machines yet..</p>
+  <p class="enlarge" style="margin-bottom: 4%;">@Html.ActionLink("Add Machine to Mechanic", "AddMachine", new { id = Model.MechanicId})</p>
 } 
 else
 {
-  <h3>Machines:</h3>
+  <h3 style="margin-bottom: 2%;">Machines:</h3>
    <ul>
     @foreach (MechanicMachine join in Model.JoinEntities)
     {
-      <li> @join.Machine.Name</li>
       @using (Html.BeginForm("DeleteMachine", "Mechanics"))
       {
+       <li> 
+        @join.Machine.Name |
         @Html.Hidden("joinId", @join.MechanicMachineId)
-        <input type="submit" value="Delete" />
+        <input type="submit" value="Delete" class="btn btn-danger btn-md"/>
+      </li>
       }
     }
   </ul>
+<p class="enlarge" style="margin-bottom: 4%;">@Html.ActionLink("Add Machine to Mechanic", "AddMachine", new { id = Model.MechanicId})</p>
 }
+<hr style="font-size: 10px;">
 
-<p class="enlarge">@Html.ActionLink("Edit", "Edit", new { id = Model.MechanicId})</p>
+<p class="enlarge">@Html.ActionLink("Edit Mechanic", "Edit", new { id = Model.MechanicId})</p>
 <p class="enlarge">@Html.ActionLink("Delete Mechanic", "Delete", new { id = Model.MechanicId})</p>
 <p class="enlarge">@Html.ActionLink("Back to Mechanics", "Index")</p>
 <p class="enlarge">@Html.ActionLink("Main Menu", "Index", "Home")</p>
