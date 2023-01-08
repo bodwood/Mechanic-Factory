@@ -5,15 +5,13 @@
 <h1>Delete Machine</h1>
 @model Factory.Models.Machine
 
-<ul>
-  <li>Name: @Html.DisplayFor(model => model.Name)</li>
-</ul>
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.MachineId)
-  <input type="submit" value="Delete">
+  <li>Name: @Html.DisplayFor(model => model.Name)</li>
+  @Html.HiddenFor(model => model.MachineId) 
+  <input type="submit" value="Delete" class="btn btn-danger btn-md" style="margin-top: 4%; margin-bottom: 3%">
 }
 
-<p>@Html.ActionLink("Back to Machines", "Index")</p>
-<p>@Html.ActionLink("Main Menu", "Index", "Home")</p
+<p class="enlarge">@Html.ActionLink("Back to Machines", "Index")</p>
+<p class="enlarge">@Html.ActionLink("Main Menu", "Index", "Home")</p
