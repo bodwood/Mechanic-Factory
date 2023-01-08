@@ -9,9 +9,9 @@
 {
   @Html.DisplayFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name, new {placeholder= "Mechanic Name"})
-  <p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</p> 
-  <input type="Submit" value="Add">
+  <h3>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</h3> 
+  <input type="Submit" value="Add" class="btn btn-lg btn-info" style="margin-bottom: 4%;">
 }
 
-<p class="enlarge">@Html.ActionLink("Back to Mechanics", "Index")</p>
+<p class="enlarge">@Html.ActionLink("View Mechanics", "Index")</p>
 <p class="enlarge">@Html.ActionLink("Main Menu", "Index", "Home")</p>
