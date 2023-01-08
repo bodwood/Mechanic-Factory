@@ -11,7 +11,7 @@
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name, new {placeholder= "Machine Name"})
   <h3>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</h3> 
-  <input type="Submit" value="Add">
+  <input type="submit" value="Add" class="btn btn-lg btn-info" style="margin-bottom: 4%;">
 }
 
 <p class="enlarge">@Html.ActionLink("Back to Machines", "Index", "Machines")</p>
