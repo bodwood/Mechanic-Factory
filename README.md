@@ -31,8 +31,8 @@ This website gives employers the ability to see a view of all company mechanics 
 * Install .NET 6 SDK. If .NET 6 SDK is needed, click here: [Install .NET 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 * Install necessary packages for EF Core and a tool to database updates:
     - ```dotnet add package Microsoft.EntityFrameworkCore -v 6.0.0```
-    - ```dotnet add package Pomelo.EntityFrameworkCore.MySql -v 6.0.0-alpha.2```
-    - ```dotnet tool install --global dotnet-ef --version 6.0.0```
+    - ```dotnet add package Pomelo.EntityFrameworkCore.MySql -v 6.0.0```
+    - ```dotnet tool install --global dotnet-ef --version 6.0.1```
 * Create .gitignore file:
   - ```touch .gitignore```
   - ```echo "*/obj/ */bin/ */appsettings.json" > .gitignore ```
